@@ -1,6 +1,5 @@
-/* eslint-disable no-undef */
 /* eslint-disable @next/next/no-img-element */
-import React, { MutableRefObject, RefObject } from 'react'
+import React, { RefObject } from 'react'
 
 import Image from 'next/image'
 
@@ -15,7 +14,7 @@ type Props = {
   introRef: RefObject<HTMLDivElement>;
 }
 
-const IntroSection = ({handleMouseDown, handleMouseUp, introRef}: Props) => {
+const IntroSection = ({introRef, handleMouseDown, handleMouseUp}: Props) => {
   return (
     <div ref={introRef} onMouseDown={handleMouseDown} onMouseUp={handleMouseUp}
      className="relative h-screen	overflow-hidden bg-turquoise">

@@ -1,7 +1,6 @@
 import React from 'react';
 
-const Header = () => {
-  return (
+const Header = () =>  (
     <header className="z-2 relative ml-10 mr-6 box-border flex	justify-between pt-10">
       <div>
         <h2 className="text-xl font-bold text-white">
@@ -17,6 +16,5 @@ const Header = () => {
       </nav>
     </header>
   );
-};
 
 export default Header;
