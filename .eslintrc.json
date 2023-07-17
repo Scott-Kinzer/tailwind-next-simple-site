@@ -5,6 +5,7 @@
   "prettier"],
   "plugins": ["react", "@typescript-eslint"],
   "rules": {
+    "no-unused-vars": "off",
     "no-multiple-empty-lines": ["error", { "max": 1 }],
     "prefer-const": "error",
     "react/react-in-jsx-scope": "off",

@@ -2,15 +2,16 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-import Header from './components/header/Header';
+import ArrowNavigation from './components/arrowNavigation/ArrowNavigation';
 import IntroSection from './sections/intro/IntroSection';
+import { MouseEvent } from './sections/intro/types/types';
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState(0);
   const [touchStartY, setTouchStartY] = useState(0);
   const [touchEndY, setTouchEndY] = useState(0);
-  const ref1 = useRef<any>(null);
-  const ref2 = useRef<any>(null);
+  const introRef = useRef<HTMLDivElement>(null);
+  const ref2 = useRef<HTMLDivElement>(null);
 
   const totalSections = 2;
 
@@ -18,11 +19,11 @@ export default function Home() {
     document.body.style.overflow = 'hidden';
   }, []);
 
-  const handleMouseDown = (event: any) => {
+  const handleMouseDown = (event: MouseEvent<HTMLDivElement>) => {
     setTouchStartY(event.clientY);
   };
 
-  const handleMouseUp = (event: any) => {
+  const handleMouseUp = (event: MouseEvent<HTMLDivElement>) => {
     setTouchEndY(event.clientY);
   };
 
@@ -44,35 +45,36 @@ export default function Home() {
   };
 
   useEffect(() => {
-    const arr = [ref1, ref2];
-    arr[activeSection].current.scrollIntoView({
+    const arr = [introRef, ref2];
+    arr[activeSection]?.current?.scrollIntoView({
       behavior: 'smooth',
     });
   }, [activeSection]);
 
   return (
     <main className="">
-      <div
-        ref={ref1}
-        onMouseDown={handleMouseDown}
-        onMouseUp={handleMouseUp}
-        className="relative h-screen	overflow-hidden bg-turquoise">
-        <div
-          className="absolute left-1/2 
-        h-screen w-1/2 
-        bg-black 
-        opacity-80 
-        before:absolute 
-        before:left-[-25%] 
-        before:top-[-5%] 
-        before:h-heightUp 
-        before:w-[50%] 
-        before:rounded-half 
-        before:bg-black
-        before:content-['']"></div>
-        <Header />
-        <IntroSection />
-      </div>
+      <IntroSection
+        handleMouseDown={handleMouseDown}
+        handleMouseUp={handleMouseUp}
+        introRef={introRef}
+      />
+      <IntroSection
+        handleMouseDown={handleMouseDown}
+        handleMouseUp={handleMouseUp}
+        introRef={ref2}
+      />
+      <ArrowNavigation
+        down={() => {
+          if (activeSection < totalSections - 1) {
+            setActiveSection(section => section + 1);
+          }
+        }}
+        up={() => {
+          if (activeSection > 0) {
+            setActiveSection(section => section - 1);
+          }
+        }}
+      />
     </main>
   );
 }

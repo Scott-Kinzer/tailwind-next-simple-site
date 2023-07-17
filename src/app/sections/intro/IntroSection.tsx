@@ -1,13 +1,41 @@
+/* eslint-disable no-undef */
 /* eslint-disable @next/next/no-img-element */
-import React from 'react'
+import React, { MutableRefObject, RefObject } from 'react'
 
 import Image from 'next/image'
 
-import { SOCIAL_ICONS } from './data/intro.data'
+import Header from '@/app/components/header/Header'
 
-const IntroSection = () => {
+import { SOCIAL_ICONS } from './data/intro.data'
+import { MouseEvent } from './types/types'
+
+type Props = {
+  handleMouseDown: (event: MouseEvent<HTMLDivElement>) => void;
+  handleMouseUp: (event: MouseEvent<HTMLDivElement>) => void;
+  introRef: RefObject<HTMLDivElement>;
+}
+
+const IntroSection = ({handleMouseDown, handleMouseUp, introRef}: Props) => {
   return (
-    <div className="z-2 relative mt-[100px] grid grid-cols-intro pl-[15px] pr-[100px] c:mt-[30px]">
+    <div ref={introRef} onMouseDown={handleMouseDown} onMouseUp={handleMouseUp}
+     className="relative h-screen	overflow-hidden bg-turquoise">
+    <div
+        className="
+        absolute left-1/2 
+        h-screen w-1/2 
+        bg-black 
+        opacity-80 
+        before:absolute 
+        before:left-[-25%] 
+        before:top-[-5%] 
+        before:h-heightUp 
+        before:w-[50%] 
+        before:rounded-half 
+        before:bg-black
+        before:content-['']">  
+    </div>
+    <Header />
+    <div className="z-2 h-[100%] content-evenly relative grid grid-cols-intro pl-[15px] pr-[100px]">
     <div>
       <h1 className="text-6xl font-bold text-white a:text-4xl b:text-xl">
         WELCOME TO OUR SITE
@@ -35,13 +63,14 @@ const IntroSection = () => {
         })}
       </div>
     </div>
-    <div className="">
+    <div>
       <img
         className="ml-auto h-[500px] w-[500px] a:h-[300px] a:w-[300px]"
         src="/images/intro/human-light.png"
         alt="human"
       />
     </div>
+  </div>
   </div>
   )
 }
