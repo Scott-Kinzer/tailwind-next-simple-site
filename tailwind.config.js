@@ -20,7 +20,27 @@ module.exports = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       colors: {
-        'turquoise': '#50A8BB'
+        'turquoise': '#50A8BB',
+        'darkBlue': '#023047'
+      },
+      gridTemplateColumns: {
+        'intro': '1fr 2fr',
+      },
+      screens: {
+        'a': {'max': '1635px'},
+        // => @media (max-width: 1535px) { ... }
+  
+        'b': {'max': '1379px'},
+        // => @media (max-width: 1279px) { ... }
+  
+        'c': {'max': '1023px'},
+        // => @media (max-width: 1023px) { ... }
+  
+        'd': {'max': '767px'},
+        // => @media (max-width: 767px) { ... }
+  
+        'e': {'max': '639px'},
+        // => @media (max-width: 639px) { ... }
       }
     },
   },

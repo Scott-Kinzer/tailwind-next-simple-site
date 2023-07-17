@@ -32,6 +32,11 @@
             "group": "external",
             "position": "before"
           },
+          { 
+            "pattern": "public/**", 
+            "group": "internal", 
+            "position": "after" 
+          },
           {
             "pattern": "react",
             "group": "external",

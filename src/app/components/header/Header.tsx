@@ -4,7 +4,9 @@ const Header = () => {
   return (
     <header className="z-2 relative ml-10 mr-6 box-border flex	justify-between pt-10">
       <div>
-        <h2 className="text-xl font-bold text-white">LOGO</h2>
+        <h2 className="text-xl font-bold text-white">
+          <a href="/">LOGO</a>
+        </h2>
       </div>
 
       <nav className="flex list-none gap-20 text-white">
