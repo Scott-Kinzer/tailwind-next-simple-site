@@ -12,11 +12,25 @@ export default function Home() {
   const [activeSection, setActiveSection] = useState(0);
   const [touchStartY, setTouchStartY] = useState(0);
   const [touchEndY, setTouchEndY] = useState(0);
+
   const introRef = useRef<HTMLDivElement>(null);
   const aboutRef = useRef<HTMLDivElement>(null);
 
   const sections = [introRef, aboutRef];
   const totalSections = 2;
+
+  const handleSwipe = () => {
+    const swipeDistance = touchStartY - touchEndY;
+
+    if (swipeDistance > 100 && activeSection < totalSections - 1) {
+      setActiveSection(activeSection + 1);
+    } else if (swipeDistance < -100 && activeSection > 0) {
+      setActiveSection(activeSection - 1);
+    }
+
+    setTouchStartY(0);
+    setTouchEndY(0);
+  };
 
   useWindowSize(sections, activeSection);
 
@@ -38,22 +52,7 @@ export default function Home() {
     setTouchEndY(event.clientY);
   };
 
-  useEffect(() => {
-    handleSwipe();
-  }, [touchEndY]);
-
-  const handleSwipe = () => {
-    const swipeDistance = touchStartY - touchEndY;
-
-    if (swipeDistance > 100 && activeSection < totalSections - 1) {
-      setActiveSection(activeSection + 1);
-    } else if (swipeDistance < -100 && activeSection > 0) {
-      setActiveSection(activeSection - 1);
-    }
-
-    setTouchStartY(0);
-    setTouchEndY(0);
-  };
+  useEffect(handleSwipe, [touchEndY]);
 
   return (
     <main className="">
@@ -65,7 +64,7 @@ export default function Home() {
       <AboutSection
         handleMouseDown={handleMouseDown}
         handleMouseUp={handleMouseUp}
-        introRef={aboutRef}
+        aboutRef={aboutRef}
       />
       <ArrowNavigation
         down={() => {

@@ -1,21 +1,18 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { RefObject } from 'react';
 
-import Image from 'next/image';
-
-import Header from '@/app/components/header/Header';
 import { MouseEvent } from '@/app/types/types';
 
 type Props = {
   handleMouseDown: (event: MouseEvent<HTMLDivElement>) => void;
   handleMouseUp: (event: MouseEvent<HTMLDivElement>) => void;
-  introRef: RefObject<HTMLDivElement>;
+  aboutRef: RefObject<HTMLDivElement>;
 };
 
-const AboutSection = ({ introRef, handleMouseDown, handleMouseUp }: Props) => {
+const AboutSection = ({ aboutRef, handleMouseDown, handleMouseUp }: Props) => {
   return (
     <div
-      ref={introRef}
+      ref={aboutRef}
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}
       className="relative h-screen overflow-hidden bg-turquoise">

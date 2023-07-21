@@ -1,9 +1,9 @@
 import { useState, useEffect, RefObject } from 'react';
 
-export function useWindowSize(
+export const useWindowSize = (
   sections: RefObject<HTMLDivElement>[],
   activeSection: number
-) {
+) => {
   useEffect(() => {
     function handleResize() {
       sections[activeSection]?.current?.scrollIntoView();
@@ -13,4 +13,4 @@ export function useWindowSize(
 
     return () => window.removeEventListener('resize', handleResize);
   }, [activeSection, sections]);
-}
+};
