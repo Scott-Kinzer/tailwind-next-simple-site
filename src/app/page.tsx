@@ -3,17 +3,22 @@
 import { useEffect, useRef, useState } from 'react';
 
 import ArrowNavigation from './components/arrowNavigation/ArrowNavigation';
+import { useWindowSize } from './hooks/useResize';
+import AboutSection from './sections/about/AboutSection';
 import IntroSection from './sections/intro/IntroSection';
-import { MouseEvent } from './sections/intro/types/types';
+import { MouseEvent } from './types/types';
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState(0);
   const [touchStartY, setTouchStartY] = useState(0);
   const [touchEndY, setTouchEndY] = useState(0);
   const introRef = useRef<HTMLDivElement>(null);
-  const ref2 = useRef<HTMLDivElement>(null);
+  const aboutRef = useRef<HTMLDivElement>(null);
 
+  const sections = [introRef, aboutRef];
   const totalSections = 2;
+
+  useWindowSize(sections, activeSection);
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -45,11 +50,25 @@ export default function Home() {
   };
 
   useEffect(() => {
-    const arr = [introRef, ref2];
-    arr[activeSection]?.current?.scrollIntoView({
-      behavior: 'smooth',
-    });
-  }, [activeSection]);
+    // Handler to call on window resize
+    function handleResize() {
+      sections[activeSection]?.current?.scrollIntoView({
+        behavior: 'smooth',
+      });
+    }
+    // Add event listener
+    window.addEventListener('resize', handleResize);
+    // Call handler right away so state gets updated with initial window size
+    handleResize();
+    // Remove event listener on cleanup
+    return () => window.removeEventListener('resize', handleResize);
+  }, [activeSection]); // Empty array ensures that effect is only run on mount
+
+  // useEffect(() => {
+  //   sections[activeSection]?.current?.scrollIntoView({
+  //     behavior: 'smooth',
+  //   });
+  // }, [activeSection]);
 
   return (
     <main className="">
@@ -58,10 +77,10 @@ export default function Home() {
         handleMouseUp={handleMouseUp}
         introRef={introRef}
       />
-      <IntroSection
+      <AboutSection
         handleMouseDown={handleMouseDown}
         handleMouseUp={handleMouseUp}
-        introRef={ref2}
+        introRef={aboutRef}
       />
       <ArrowNavigation
         down={() => {
