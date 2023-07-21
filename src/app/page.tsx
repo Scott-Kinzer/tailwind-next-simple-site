@@ -21,6 +21,12 @@ export default function Home() {
   useWindowSize(sections, activeSection);
 
   useEffect(() => {
+    sections[activeSection]?.current?.scrollIntoView({
+      behavior: 'smooth',
+    });
+  }, [activeSection]);
+
+  useEffect(() => {
     document.body.style.overflow = 'hidden';
   }, []);
 

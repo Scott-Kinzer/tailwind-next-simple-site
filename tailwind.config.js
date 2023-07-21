@@ -25,6 +25,7 @@ module.exports = {
       },
       gridTemplateColumns: {
         'intro': '1fr 2fr',
+        'about': '2fr 1fr'
       },
       screens: {
         'a': {'max': '1635px'},

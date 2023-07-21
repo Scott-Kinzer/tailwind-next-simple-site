@@ -6,14 +6,10 @@ export function useWindowSize(
 ) {
   useEffect(() => {
     function handleResize() {
-      sections[activeSection]?.current?.scrollIntoView({
-        behavior: 'smooth',
-      });
+      sections[activeSection]?.current?.scrollIntoView();
     }
 
     window.addEventListener('resize', handleResize);
-
-    handleResize();
 
     return () => window.removeEventListener('resize', handleResize);
   }, [activeSection, sections]);
