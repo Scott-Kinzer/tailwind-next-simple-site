@@ -23,6 +23,7 @@ module.exports = {
         'turquoise': '#50A8BB',
         'darkBlue': '#023047',
         'serviceCard': '#79BDCA',
+        'serviceModal': '#77E9E2',
       },
       gridTemplateColumns: {
         'intro': '1fr 2fr',
@@ -30,6 +31,7 @@ module.exports = {
         'services': 'minmax(150px, 576px) minmax(150px, 576px) minmax(150px, 576px)',
         'servicesMedium': 'repeat(2, minmax(150px, 300px))',
         'serviesSmall': 'repeat(2, minmax(50px, 300px))',
+        'serviceModal': '1fr 1fr 1fr',
       },
       screens: {
         'a': {'max': '1635px'},

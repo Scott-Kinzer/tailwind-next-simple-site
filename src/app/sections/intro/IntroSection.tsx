@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { RefObject } from 'react';
+import React, { Dispatch, RefObject, SetStateAction } from 'react';
 
 import Image from 'next/image';
 
@@ -11,10 +11,16 @@ import { SOCIAL_ICONS } from './data/intro.data';
 type Props = {
   handleMouseDown: (event: MouseEvent<HTMLDivElement>) => void;
   handleMouseUp: (event: MouseEvent<HTMLDivElement>) => void;
+  setActiveSection: Dispatch<SetStateAction<number>>;
   introRef: RefObject<HTMLDivElement>;
 };
 
-const IntroSection = ({ introRef, handleMouseDown, handleMouseUp }: Props) => {
+const IntroSection = ({
+  introRef,
+  handleMouseDown,
+  handleMouseUp,
+  setActiveSection,
+}: Props) => {
   return (
     <div
       ref={introRef}
@@ -35,7 +41,7 @@ const IntroSection = ({ introRef, handleMouseDown, handleMouseUp }: Props) => {
         before:rounded-half 
         before:bg-black
         before:content-['']"></div>
-      <Header />
+      <Header setActiveSection={setActiveSection} />
       <div className="z-2 relative grid h-[100%] grid-cols-intro content-evenly pl-[15px] pr-[100px]">
         <div>
           <h1 className="text-6xl font-bold text-white a:text-4xl b:text-xl">

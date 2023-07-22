@@ -1,20 +1,32 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 
-const Header = () =>  (
-    <header className="z-2 relative ml-10 mr-6 box-border flex	justify-between pt-10">
-      <div>
-        <h2 className="text-xl font-bold text-white">
-          <a href="/">LOGO</a>
-        </h2>
-      </div>
+type Props = {
+  setActiveSection: Dispatch<SetStateAction<number>>;
+};
 
-      <nav className="flex list-none gap-20 text-white">
-        <li className="cursor-pointer">Home</li>
-        <li className="cursor-pointer">About</li>
-        <li className="cursor-pointer">Service</li>
-        <li className="cursor-pointer">Contact</li>
-      </nav>
-    </header>
-  );
+const sections = ['Home', 'About', 'Service', 'Contact'];
+
+const Header = ({ setActiveSection }: Props) => (
+  <header className="z-2 relative ml-10 mr-6 box-border flex	justify-between pt-10">
+    <div>
+      <h2 className="text-xl font-bold text-white">
+        <a href="/">LOGO</a>
+      </h2>
+    </div>
+
+    <nav className="flex list-none gap-20 text-white">
+      {sections.map((sectionName, i) => {
+        return (
+          <li
+            onClick={() => setActiveSection(i)}
+            key={i}
+            className="cursor-pointer">
+            {sectionName}
+          </li>
+        );
+      })}
+    </nav>
+  </header>
+);
 
 export default Header;

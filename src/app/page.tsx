@@ -62,6 +62,7 @@ export default function Home() {
         handleMouseDown={handleMouseDown}
         handleMouseUp={handleMouseUp}
         introRef={introRef}
+        setActiveSection={setActiveSection}
       />
       <AboutSection
         handleMouseDown={handleMouseDown}

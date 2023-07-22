@@ -1,13 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 import useOutsideClick from '@/app/hooks/useOutsideClick';
+import { ModalService } from '@/app/sections/services/ServicesSection';
 
 type Props = {
   isOpenModal: boolean;
+  modalData: ModalService;
   setIsOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const ServicesModal = ({ isOpenModal, setIsOpenModal }: Props) => {
+const ServicesModal = ({ isOpenModal, modalData, setIsOpenModal }: Props) => {
   const [isOpenModalLocal, setIsOpenModalLocal] = useState(false);
   const [isAllowToCloseModal, setIsAllowToCloseModal] = useState(false);
 
@@ -37,10 +39,14 @@ const ServicesModal = ({ isOpenModal, setIsOpenModal }: Props) => {
   return (
     <div
       ref={modalRef}
-      className={`z-3 absolute ${
-        isOpenModalLocal ? 'translate-y-1/2' : 'translate-y-full'
-      } top-0 h-screen w-screen bg-white transition-transform`}>
-      Test
+      className={`z-4 absolute ${
+        isOpenModalLocal ? 'translate-y-[100%]' : 'translate-y-[200%]'
+      } top-0 h-[50vh] w-screen bg-serviceModal transition-transform`}>
+      <div className="grid h-[100%] grid-cols-serviceModal content-evenly">
+        <div className="m-auto">{modalData.title}</div>
+        <div className="m-auto">{modalData.text}</div>
+        <img className="m-auto" src={modalData.image} alt={modalData.text} />
+      </div>
       <div
         onClick={closeModal}
         className="absolute right-[50px] top-[20px] cursor-pointer">
