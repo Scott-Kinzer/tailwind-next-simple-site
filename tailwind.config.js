@@ -21,11 +21,15 @@ module.exports = {
       },
       colors: {
         'turquoise': '#50A8BB',
-        'darkBlue': '#023047'
+        'darkBlue': '#023047',
+        'serviceCard': '#79BDCA',
       },
       gridTemplateColumns: {
         'intro': '1fr 2fr',
-        'about': '2fr 1fr'
+        'about': '2fr 1fr',
+        'services': 'minmax(150px, 576px) minmax(150px, 576px) minmax(150px, 576px)',
+        'servicesMedium': 'repeat(2, minmax(150px, 300px))',
+        'serviesSmall': 'repeat(2, minmax(50px, 300px))',
       },
       screens: {
         'a': {'max': '1635px'},
@@ -37,10 +41,10 @@ module.exports = {
         'c': {'max': '1023px'},
         // => @media (max-width: 1023px) { ... }
   
-        'd': {'max': '767px'},
+        'd': {'max': '800px'},
         // => @media (max-width: 767px) { ... }
   
-        'e': {'max': '639px'},
+        'e': {'max': '660px'},
         // => @media (max-width: 639px) { ... }
       }
     },

@@ -6,6 +6,7 @@ import ArrowNavigation from './components/arrowNavigation/ArrowNavigation';
 import { useWindowSize } from './hooks/useResize';
 import AboutSection from './sections/about/AboutSection';
 import IntroSection from './sections/intro/IntroSection';
+import ServicesSection from './sections/services/ServicesSection';
 import { MouseEvent } from './types/types';
 
 export default function Home() {
@@ -15,9 +16,10 @@ export default function Home() {
 
   const introRef = useRef<HTMLDivElement>(null);
   const aboutRef = useRef<HTMLDivElement>(null);
+  const servicesRef = useRef<HTMLDivElement>(null);
 
-  const sections = [introRef, aboutRef];
-  const totalSections = 2;
+  const sections = [introRef, aboutRef, servicesRef];
+  const totalSections = 3;
 
   const handleSwipe = () => {
     const swipeDistance = touchStartY - touchEndY;
@@ -32,6 +34,14 @@ export default function Home() {
     setTouchEndY(0);
   };
 
+  const handleMouseDown = (event: MouseEvent<HTMLDivElement>) => {
+    setTouchStartY(event.clientY);
+  };
+
+  const handleMouseUp = (event: MouseEvent<HTMLDivElement>) => {
+    setTouchEndY(event.clientY);
+  };
+
   useWindowSize(sections, activeSection);
 
   useEffect(() => {
@@ -43,14 +53,6 @@ export default function Home() {
   useEffect(() => {
     document.body.style.overflow = 'hidden';
   }, []);
-
-  const handleMouseDown = (event: MouseEvent<HTMLDivElement>) => {
-    setTouchStartY(event.clientY);
-  };
-
-  const handleMouseUp = (event: MouseEvent<HTMLDivElement>) => {
-    setTouchEndY(event.clientY);
-  };
 
   useEffect(handleSwipe, [touchEndY]);
 
@@ -65,6 +67,11 @@ export default function Home() {
         handleMouseDown={handleMouseDown}
         handleMouseUp={handleMouseUp}
         aboutRef={aboutRef}
+      />
+      <ServicesSection
+        handleMouseDown={handleMouseDown}
+        handleMouseUp={handleMouseUp}
+        servicesRef={servicesRef}
       />
       <ArrowNavigation
         down={() => {
