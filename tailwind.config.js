@@ -32,6 +32,7 @@ module.exports = {
         'servicesMedium': 'repeat(2, minmax(150px, 300px))',
         'serviesSmall': 'repeat(2, minmax(50px, 300px))',
         'serviceModal': '1fr 1fr 1fr',
+        'contact': '2fr 4fr'
       },
       screens: {
         'a': {'max': '1635px'},
